@@ -1,5 +1,18 @@
 #pragma once
 
-void swap(int i, int j);
+void swap(int* i, int* j);
+void XorSwap(int* i, int* j);
 void bubble(int arr[], int n);
 void BubbleSort(int arr[], int n);
+bool orderly;
+
+
+
+
+
+//冒泡排序总结
+//冒泡的思想为：前后两个变量比较，依次遍历一遍，把最大的变量在遍历的过程中放到最后一位，然后最多遍历 N - 1 次，即可完成排序;
+//冒泡的最高的时间复杂度为：O（N^2）;
+//优化方法：
+//1.遍历过程中交换变量的时候，可以使用异或的方式实现两个变量的交换，减少使用临时变量的消耗；
+//2.可以创建标志位，标记每次的遍历过程是否发生变量的交换，如果某一次的遍历过程中没有进行变量的交换，说明此时数组元素已经有序，后续无需在进行遍历，标志位置为true,break跳出循环，结束排序；

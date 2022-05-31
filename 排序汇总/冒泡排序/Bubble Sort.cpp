@@ -1,4 +1,6 @@
+#include<stdio.h>
 #include<iostream>
+#include"BubbleSort.h"
 using namespace std;
 
 //swap传参为数组指针，否则无法交换数组元素
@@ -33,6 +35,7 @@ void bubble(int arr[],int n)
 			arr[i] = arr[i + 1];
 			arr[i + 1] = temp;*/
 			XorSwap(&arr[i], &arr[i + 1]);
+			orderly = false;
 		}
 	}
 	return;
@@ -44,7 +47,14 @@ void BubbleSort(int arr[], int n)
 	int i;
 	for (i = n; i >= 1; i--)
 	{
+		orderly = true;
 		bubble(arr,i);
+		//标志位orderly为true,说明元素已经有序，结束排序
+		if (orderly)
+		{
+			break;
+		}
+
 	}
 	return;
 }
