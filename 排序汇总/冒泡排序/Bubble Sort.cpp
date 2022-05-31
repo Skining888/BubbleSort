@@ -11,6 +11,14 @@ void swap(int *i, int *j)
 	return;
 }
 
+//交换两个变量的值，可以使用异或方法，减少临时变量的开销
+void XorSwap(int* i, int* j)
+{
+	*i = *i ^ *j;
+	*j = *j ^ *i;
+	*i = *i ^ *j;
+	return;
+}
 //两个数值之间进行比较
 void bubble(int arr[],int n)
 {
@@ -20,10 +28,11 @@ void bubble(int arr[],int n)
 	{
 		if (arr[i] > arr[i + 1])
 		{
-			swap(&arr[i], &arr[i + 1]);
+			//swap(&arr[i], &arr[i + 1]);
 			/*temp = arr[i];
 			arr[i] = arr[i + 1];
 			arr[i + 1] = temp;*/
+			XorSwap(&arr[i], &arr[i + 1]);
 		}
 	}
 	return;
@@ -35,7 +44,6 @@ void BubbleSort(int arr[], int n)
 	int i;
 	for (i = n; i >= 1; i--)
 	{
-		bubble(arr,i);
 		bubble(arr,i);
 	}
 	return;
