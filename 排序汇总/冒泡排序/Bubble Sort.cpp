@@ -1,4 +1,5 @@
-#include<stdio.h>
+#include<iostream>
+using namespace std;
 
 //swap传参为数组指针，否则无法交换数组元素
 void swap(int *i, int *j)
@@ -34,7 +35,8 @@ void BubbleSort(int arr[], int n)
 	int i;
 	for (i = n; i >= 1; i--)
 	{
-		bubble(arr, i);
+		bubble(arr,i);
+		bubble(arr,i);
 	}
 	return;
 }
@@ -43,12 +45,13 @@ int main()
 {
 	int arr[] = { 9,6,8,4,3,7,2,1,5 };
 	int arr_size = sizeof(arr) / sizeof(arr[0]); //计算数组大小
-	printf("arr_size = %d\n", arr_size);
+	cout << "arr_size = " << arr_size << endl;
 	BubbleSort(arr, arr_size);
 	int i;
 	for (i = 0; i < arr_size; i++)
 	{
-		printf("%d\n", arr[i]);
-	}
+		cout << arr[i] << endl;
+ 	}
+	system("pause");
 	return 0;
 }
