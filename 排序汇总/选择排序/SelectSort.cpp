@@ -1,5 +1,8 @@
+#include<stdio.h>
 #include<iostream>
+#include"SelectSort.h"
 using namespace std;
+
 
 void swap(int* i, int* j)
 {
@@ -10,6 +13,18 @@ void swap(int* i, int* j)
 	return;
 }
 
+void XorSwap(int* i, int* j)
+{
+	//如果两个变量相同，异或后结果为0，需要做下判断
+	if (*i == *j)
+	{
+		return;
+	}
+	*i ^=  *j;
+	*j ^=  *i;
+	*i ^=  *j;
+	return;
+}
 //返回最大值的下标
 int SelectMax(int arr[], int n)
 {
@@ -33,7 +48,8 @@ void SelectSort(int arr[], int n)
 	while (n > 1)
 	{
 		int pos = SelectMax(arr, n);
-		swap(&arr[pos], &arr[n - 1]);
+		//swap(&arr[pos], &arr[n - 1]);
+		XorSwap(&arr[pos], &arr[n - 1]);
 		n--;
 	}
 	return;
