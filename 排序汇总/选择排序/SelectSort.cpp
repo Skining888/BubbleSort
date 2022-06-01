@@ -26,31 +26,55 @@ void XorSwap(int* i, int* j)
 	return;
 }
 //返回最大值的下标
-int SelectMax(int arr[], int n)
+int SelectMax(int arr[], int Max_pos,int Min_pos)
 {
-	int max = arr[0];
-	int pos = 0;
-	for (int i = 0; i < n - 1; i++)
+	int max = arr[Min_pos];
+	int max_pos = Min_pos;
+	for (Min_pos; Min_pos < Max_pos; Min_pos++)
 	{
-		if (max < arr[i + 1])
+		if (max < arr[Min_pos + 1])
 		{
-			max = arr[i + 1];
-			pos = i + 1;
+			max = arr[Min_pos + 1];
+			max_pos = Min_pos + 1;
 		}
 	}
-	return pos;
+	return max_pos;
+}
+
+//返回最小值的下标
+int SelectMin(int arr[], int Max_pos, int Min_pos)
+{
+	int min = arr[Min_pos];
+	int min_pos = Min_pos;
+	for (Min_pos; Min_pos < Max_pos; Min_pos++)
+	{
+		if (min > arr[Min_pos + 1])
+		{
+			min = arr[Min_pos + 1];
+			min_pos = Min_pos + 1;
+		}
+	}
+	return min_pos;
 }
 
 //拿到最大值的下标。交换最大值与数组最后一位的数字
-void SelectSort(int arr[], int n)
+void SelectSort(int arr[], int Max_pos, int Min_pos)
 {
-	//执行n-1次即可排序
-	while (n > 1)
+	//count计算需要执行的次数，一次循环选择一个最大值，一个最小值，因此只需要循环 N/2 次
+	//此处因为选择Max_pos为下标，所以循环次数的计算需要(Max_pos + 1) / 2
+	int count = (Max_pos + 1) / 2;
+	while (count)
 	{
-		int pos = SelectMax(arr, n);
+		int max_pos = SelectMax(arr, Max_pos, Min_pos);
+		XorSwap(&arr[max_pos], &arr[Max_pos]);
+		//Max_pos-- 可以使接下来寻找最小值的下标的时候，少遍历一次
+		Max_pos--;
+		int min_pos = SelectMin(arr, Max_pos, Min_pos);
+		XorSwap(&arr[min_pos], &arr[Min_pos]);
 		//swap(&arr[pos], &arr[n - 1]);
-		XorSwap(&arr[pos], &arr[n - 1]);
-		n--;
+		//Min_pos++ 可以使接下来寻找最大值的下标的时候，少遍历一次
+		Min_pos++;
+		count--;
 	}
 	return;
 }
@@ -58,8 +82,10 @@ int main()
 {
 	int arr[] = { 7,8,5,4,9,2,3,1,6 };
 	int arr_size = sizeof(arr) / sizeof(arr[0]);
+	int Max_pos = arr_size - 1;
+	int Min_pos = 0;
 	cout << "arr_size = " << arr_size << endl;
-	SelectSort(arr, arr_size);
+	SelectSort(arr, Max_pos, Min_pos);
 	for (int i = 0; i < arr_size; i++)
 	{
 		cout << arr[i] << endl;
