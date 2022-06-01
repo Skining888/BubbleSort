@@ -1,8 +1,8 @@
 #include<stdio.h>
 int main()
 {
-	int a = 10;
-	int b = 20;
+	int a = 20;
+	int b = 30;
 	printf("test a + b = %d\n",a+b);
 	return 0;
 }
