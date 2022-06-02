@@ -6,9 +6,9 @@ int SelectMax(int arr[], int Max_pos, int Min_pos);
 int SelectMin(int arr[], int Max_pos, int Min_pos);
 void SelectSort(int arr[], int Max_pos, int Min_pos);
 
-//记录要交换的最大值的位置（Max_pos）
+//记录右边界的位置下标（Max_pos）
 int Max_pos = 0;
-//记录要交换的最小值的位置下标（Min_pos）
+//记录左边界位置下标（Min_pos）
 int Min_pos = 0;
 
 
