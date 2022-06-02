@@ -16,6 +16,11 @@ void swap(int *i, int *j)
 //交换两个变量的值，可以使用异或方法，减少临时变量的开销
 void XorSwap(int* i, int* j)
 {
+	//异或两个相同数字的值为0，需要做下判断
+	if (*i == *j)
+	{
+		return;
+	}
 	*i = *i ^ *j;
 	*j = *j ^ *i;
 	*i = *i ^ *j;
@@ -61,7 +66,10 @@ void BubbleSort(int arr[], int n)
 
 int main()
 {
-	int arr[] = { 9,6,8,4,3,7,2,1,5 };
+	//int arr[] = { 9,6,8,4,3,7,2,1,5 };
+	//int arr[] = { 9,8,7,6,5,4,3,2,1 };
+	//int arr[] = { 1,2,3,4,5,6,7,8,9 };
+	int arr[] = { 1,1,3,4,5,6,6,7,7,1 };
 	int arr_size = sizeof(arr) / sizeof(arr[0]); //计算数组大小
 	cout << "arr_size = " << arr_size << endl;
 	BubbleSort(arr, arr_size);
